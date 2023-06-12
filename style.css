@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Commissioner', sans-serif;
+    width: 100%;
+    height: auto;
+}
+
+.head {
+    background-image: url(/images/image-hero-desktop.jpg);
+    width: 100%;
+    height: 25rem;
+    padding-top: 3rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav {
+    /* border: 1px solid black; */
+    width: 74rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links {
+    width: 225px;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.master {
+    width: 730px;
+    height: 269px;
+    border: 1px solid black;
+    margin: -4.5rem auto 24px;
+    /* position: relative;
+    bottom: 5rem; */
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+.m-image {
+    background-image: url(/images/logo-mastercraft.svg);
+    width: 56px;
+    height: 56px;
+    margin: -2rem auto 0;
+}
+
+.m-words {
+    width: 509px;
+    height: 69px;
+    border: 1px solid black;
+    margin: 28px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.m-words h1 {
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.m-words p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #7A7A7A;
+    padding-top: .8rem;
+}
+
+.pro {
+    width: 634px;
+    height: 56px;
+    border: 1px solid black;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#back {
+    width: 204px;
+    height: 56px;
+    background: #3CB3AB;
+    border-radius: 33.5px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    border: 0;
+}
+
+#book {
+    width: 174px;
+    height: 56px;
+    border-radius: 33.5px;
+    color: #7A7A7A;
+    font-weight: 700;
+    font-size: 16px;
+    border: 0;
+}
+
+#book img{
+    /* margin-left: 0; */
+}
+
+.progress {
+    width: 730px;
+    height: 212px;
+    border: 1px solid black;
+    margin: 0 auto 24px;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+.p-s {
+    display: flex;
+    border: 1px solid black;
+    margin: 48px 48px 0;
+    align-items: center;
+}
+
+.progress hr {
+    height: 63px;
+    margin: 0 42px;
+    /* width: 1px; */
+}
+
+.money {
+    width: 137px;
+    /* height: 66px; */
+    /* margin-left: 42px; */
+}
+
+.money h1, .backers h1, .days h1 {
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.money p, .backers p, .days p {
+    font-weight: 400;
+    font-size: 14.7px;
+    color: #7A7A7A;
+}
+
+.backers {
+    width: 89px;
+    /* height: 66px; */
+    margin-right: 49px;
+}
+
+.days {
+    width: 58px;
+    /* height: 66px; */
+}
+
+.progress-bar {
+    width: 634px;
+    margin: 37px auto;
+}
+
+#progress-bar {
+    width: 634px;
+    height: 12px;
+}
+
+.about {
+    width: 730px;
+    height: 1197px;
+    border: 1px solid black;
+    margin: 0 auto 124px;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+.about h1 {
+    height: 24px;
+    width: 167px;
+    border: 1px solid black;
+    font-weight: 700;
+    font-size: 19.7px;
+    margin: 48px 48px 0;
+}
+
+.about p {
+    height: 210px;
+    width: 634px;
+    border: 1px solid black;
+    margin: 35px 48px 0;
+}
+
+.bamboo {
+    height: 248px;
+    width: 634px;
+    border-radius: 8px;
+    border: 1px solid black;
+    margin: 40px auto 0;
+}
