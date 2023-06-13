@@ -8,20 +8,31 @@ body {
     font-family: 'Commissioner', sans-serif;
     width: 100%;
     height: auto;
+    background: #F2F2F2;
 }
 
 .head {
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.0001) 100%);
+    height: 128px;
+    width: 100%;
+    padding-top: 3rem;
+}
+
+.head::before {
+    content: "";
+    top: 0;
+    left: 0;
+    position: absolute;
     background-image: url(/images/image-hero-desktop.jpg);
     width: 100%;
-    height: 25rem;
-    padding-top: 3rem;
-    background-repeat: no-repeat;
+    height: 28rem;
     background-size: cover;
+    background-position: center;
+    z-index: -1;
 }
 
 .nav {
-    /* border: 1px solid black; */
-    width: 74rem;
+    width: 80%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -30,25 +41,26 @@ body {
 
 .links {
     width: 225px;
-    /* border: 1px solid black; */
     display: flex;
     justify-content: space-between;
 }
 
-.links a{
+.links a {
     text-decoration: none;
     color: #fff;
     font-size: 13px;
     font-weight: 500;
 }
 
+.links a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .master {
     width: 730px;
     height: 269px;
-    border: 1px solid black;
-    margin: -4.5rem auto 24px;
-    /* position: relative;
-    bottom: 5rem; */
+    margin: 14rem auto 24px;
     border-radius: 8px;
     background: #FFFFFF;
 }
@@ -57,14 +69,16 @@ body {
     background-image: url(/images/logo-mastercraft.svg);
     width: 56px;
     height: 56px;
-    margin: -2rem auto 0;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+    position: relative;
+    bottom: 2rem;
 }
 
 .m-words {
     width: 509px;
     height: 69px;
-    border: 1px solid black;
-    margin: 28px auto 0;
+    margin: 5px auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,7 +99,6 @@ body {
 .pro {
     width: 634px;
     height: 56px;
-    border: 1px solid black;
     margin: 40px auto 0;
     display: flex;
     justify-content: space-between;
@@ -103,6 +116,11 @@ body {
     border: 0;
 }
 
+#back:hover {
+    cursor: pointer;
+    background: #147A73;
+}
+
 #book {
     width: 174px;
     height: 56px;
@@ -111,16 +129,21 @@ body {
     font-weight: 700;
     font-size: 16px;
     border: 0;
+    display: flex;
+    align-items: center;
 }
 
-#book img{
-    /* margin-left: 0; */
+#book:hover {
+    cursor: pointer;
+}
+
+#book  svg{
+    margin-right: 1rem;
 }
 
 .progress {
     width: 730px;
     height: 212px;
-    border: 1px solid black;
     margin: 0 auto 24px;
     border-radius: 8px;
     background: #FFFFFF;
@@ -128,29 +151,30 @@ body {
 
 .p-s {
     display: flex;
-    border: 1px solid black;
-    margin: 48px 48px 0;
+    margin: 0 48px;
     align-items: center;
+    padding-top: 48px;
 }
 
 .progress hr {
     height: 63px;
     margin: 0 42px;
-    /* width: 1px; */
 }
 
 .money {
     width: 137px;
-    /* height: 66px; */
-    /* margin-left: 42px; */
 }
 
-.money h1, .backers h1, .days h1 {
+.money h1,
+.backers h1,
+.days h1 {
     font-weight: 700;
     font-size: 32px;
 }
 
-.money p, .backers p, .days p {
+.money p,
+.backers p,
+.days p {
     font-weight: 400;
     font-size: 14.7px;
     color: #7A7A7A;
@@ -158,13 +182,11 @@ body {
 
 .backers {
     width: 89px;
-    /* height: 66px; */
     margin-right: 49px;
 }
 
 .days {
     width: 58px;
-    /* height: 66px; */
 }
 
 .progress-bar {
@@ -180,32 +202,253 @@ body {
 .about {
     width: 730px;
     height: 1197px;
-    border: 1px solid black;
     margin: 0 auto 124px;
     border-radius: 8px;
     background: #FFFFFF;
+    padding: 48px;
 }
 
 .about h1 {
     height: 24px;
-    width: 167px;
-    border: 1px solid black;
+    width: 180px;
     font-weight: 700;
     font-size: 19.7px;
-    margin: 48px 48px 0;
 }
 
-.about p {
+.about h6 {
     height: 210px;
     width: 634px;
-    border: 1px solid black;
-    margin: 35px 48px 0;
+    margin-top: 35px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    color: #7A7A7A;
 }
 
 .bamboo {
     height: 248px;
     width: 634px;
     border-radius: 8px;
-    border: 1px solid black;
-    margin: 40px auto 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+    padding: 38px 32px;
+}
+
+.b-in {
+    display: flex;
+    width: 35.625rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.b-in h2 {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.b-in span {
+    font-weight: 500;
+    font-size: 15px;
+    color: #3CB3AB;
+}
+
+.bamboo p {
+    height: 60px;
+    width: 570px;
+    margin-top: 24px;
+}
+
+.b-reward {
+    width: 570px;
+    height: 48px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.b-reward h2 {
+    height: 40px;
+    width: 83px;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.b-reward h2 span {
+    position: relative;
+    color: #7A7A7A;
+    font-weight: 400;
+    font-size: 15px;
+    bottom: .4rem;
+}
+
+#reward {
+    height: 48px;
+    width: 157px;
+    border-radius: 33.5px;
+    background: #3CB3AB;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border: 0;
+}
+
+#reward:hover {
+    cursor: pointer;
+    background: #147A73;
+}
+
+/* Back this project */
+.project {
+    position: absolute;
+    top: 184px;
+    /* margin: 0 auto; */
+    left: 394.5px;
+    height: 905px;
+    width: 730px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+    z-index: 1;
+}
+
+.lightbox {
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 228vh;
+    width: 100%;
+    background: #0a0a0a;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* opacity: 0.8; */
+    /* z-index: 99; */
+}
+
+.close-modal {
+    fill: grey;
+}
+
+.close-modal:hover {
+    cursor: pointer;
+    fill: black;
+}
+
+.project svg {
+    margin: 32px 42.75rem 0;
+}
+
+.project h1 {
+    margin: 2.43px 48px 0;
+    font-weight: 700;
+    font-size: 24px;
+    width: 200px;
+}
+
+.project p {
+    margin: 16px 48px 0;
+    color: #7A7A7A;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.pledgecontainer {
+    width: 634px;
+    height: 701px;
+    margin: 32px 48px;
+}
+
+.pledge {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    height: 157px;
+    margin-bottom: 24px;
+}
+
+input[type="radio"] {
+    /* Hide the default radio button */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Add your custom radio button styles */
+    margin: 35px 28px 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+}
+
+input[type="radio"]::before {
+    /* Add the radio button indicator */
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    /* Default color when unchecked */
+    border-radius: 50%;
+    margin: 5px;
+}
+
+input[type="radio"]:checked::before {
+    /* Change the color of the radio button when checked */
+    background: #3CB3AB;
+}
+
+.edition {
+    display: flex;
+    height: 19px;
+    width: 266px;
+    margin: -1.7rem 76px 0;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.edition:hover input[type="radio"] {
+    border-color: #3CB3AB;
+}
+
+.edition:hover h6, .edition:hover h2 {
+    color: #3CB3AB;
+    font-weight: 700;
+}
+
+.edition h2 {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.edition h6 {
+    font-weight: 500;
+font-size: 16px;
+color: #3CB3AB;
+}
+
+.edd {
+    height: 22px;
+    width: 61px;
+    margin: -1.296rem 34.063rem 0;
+}
+
+.edd h2 {
+    font-weight: 700;
+font-size: 18px;
+}
+
+.edd h2 span{
+    font-weight: 400;
+font-size: 15px;
+margin-left: .5rem;
+/* display: flex;
+justify-content: end; */
+}
+
+.pledgecontainer .pledge p {
+    height: 56px;
+width: 535px;
+font-weight: 400;
+font-size: 15px;
+line-height: 28px;
+margin-left: 4.6rem;
 }
