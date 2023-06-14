@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   openThisProject.addEventListener("click", () => {
     section1.style.display = "block";
-    console.log('Hello');
   });
 
   closeThisProject.addEventListener("click", () => {
@@ -102,34 +101,84 @@ document.addEventListener("DOMContentLoaded", (e) => {
   });
 
   // RADIO EVENTS
-  /*   const radioButton = document.querySelector("#pledge");
-  const btn = document.querySelector(".edition");
-
-  btn.addEventListener("click", () => {
-    radioButton.checked = true;
-    console.log("Hello world");
-  }); */
   const btns = document.querySelectorAll(".edition");
-  const project = document.querySelector(".project");
 
   btns.forEach((btn) => {
     const radioButton = btn.parentElement.querySelector("#pledge");
     const pl = radioButton.parentElement;
-    console.log(pl);
+    const project = pl.parentElement.parentElement;
+    // console.log(project);
     btn.addEventListener("click", () => {
-      console.log("Hello world");
       radioButton.checked = true;
       pl.style.height = "254px";
       pl.style.border = "2px solid #3CB3AB";
+      // Check if <hr> already exists
+      const existingHr = pl.querySelector("hr");
+      if (!existingHr) {
+        const hr = document.createElement("hr");
+        hr.style.border = "1px solid rgba(0, 0, 0, 0.15)";
+        hr.style.marginTop = "30px";
+        pl.appendChild(hr);
 
-        // Check if <hr> already exists
-        const existingHr = pl.querySelector("hr");
-        if (!existingHr) {
-          const hr = document.createElement("hr");
-          hr.style.border = "1px solid rgba(0, 0, 0, 0.15)";
-          hr.style.marginTop = "30px";
-          pl.appendChild(hr);
+        const div = document.createElement("div");
+        div.classList.add("pledgeAmount");
+        pl.appendChild(div);
+        div.style.height = "48px";
+        div.style.width = "578px";
+        div.style.margin = "24px auto";
+        const h6 = document.createElement("h6");
+        div.appendChild(h6);
+        h6.textContent = "Enter your pledge";
+        const div1 = document.createElement("div");
+        div.appendChild(div1);
+        const span = document.createElement("span");
+        div1.appendChild(span);
+        span.textContent = "$";
+        const input = document.createElement("input");
+        div1.appendChild(input);
+        input.setAttribute("type", "number");
+        input.setAttribute("id", "pa");
+        input.setAttribute("name", "inputno");
+        const button = document.createElement("button");
+        button.classList.add("amount");
+        div1.appendChild(button);
+        button.textContent = "Continue";
+
+        /* input.addEventListener("click", () => {
+          input.style.border = "1px solid #3CB3AB"
+          console.log(input)
+        }) */
+
+        button.addEventListener("click", function () {
+          
+          const inputValue = parseInt(input.value);
+          if (inputValue >= 25) {
+            updateMoneyValue(inputValue);
+            updateProgressBar(inputValue);
+            thankYouPage(); // Call the function to display the thank you page
+          } else {
+            alert("Please enter a value of 25 or more.");
+          }
+          project.style.display = "none";
+        });
+
+        function updateMoneyValue(value) {
+          const moneyElement = document.querySelector(".money h1");
+          const currentValue = parseInt(moneyElement.textContent.replace(/[^0-9]/g, ""));
+          const updatedValue = currentValue + value;
+          moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
         }
+
+        function updateProgressBar(value) {
+          const progressBar = document.getElementById("progress-bar");
+          const currentValue = parseInt(progressBar.value);
+          const maxValue = parseInt(progressBar.max);
+          const updatedValue = currentValue + value;
+          progressBar.value = Math.min(updatedValue, maxValue);
+        }
+
+        console.log(div);
+      }
 
       // Collapse other radio inputs
       btns.forEach((otherBtn) => {
@@ -142,8 +191,43 @@ document.addEventListener("DOMContentLoaded", (e) => {
           otherPl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
         }
       });
+      project.style.height = "1001px";
     });
   });
+
+  const thankYouPage = () => {
+    const thanks = document.createElement("section");
+thanks.classList.add("thanks");
+thanks.style.width = "540px";
+thanks.style.height = "449px";
+thanks.style.border = "1px solid rgba(0, 0, 0, 0.0497193)";
+thanks.style.borderRadius = "8px";
+thanks.style.background = "#FFFFFF";
+
+const thanksImage = document.createElement("img");
+thanksImage.src = "/images/icon-check.svg";
+thanks.appendChild(thanksImage);
+
+const thanksDiv = document.createElement("div");
+thanksDiv.classList.add("support");
+thanks.appendChild(thanksDiv);
+
+const h1 = document.createElement("h1");
+h1.textContent = "Thanks for your support!";
+thanksDiv.appendChild(h1);
+
+const paragraph = document.createElement("p");
+paragraph.textContent = "Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our campaign is completed."
+thanksDiv.appendChild(paragraph);
+
+const button = document.createElement("button");
+button.classList.add("got-it");
+button.textContent = "Got it!";
+thanksDiv.appendChild(button);
+
+    // console.log(thanks);
+  }
+  thankYouPage();
 
 });
 /*

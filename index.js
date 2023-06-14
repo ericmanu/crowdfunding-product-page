@@ -1,4 +1,6 @@
-    const productRewards = [
+document.addEventListener("DOMContentLoaded", (e) => {
+  e.preventDefault();
+const productRewards = [
         {
             reward: "Bamboo Stand",
             pledge: "Pledge $25 or more",
@@ -69,23 +71,7 @@
         // console.log(section);
     });
 
-/*     const bookmarkButton = document.getElementById('book');
-    const booksvg = document.getElementById('btn');
-    const circle = booksvg.querySelector("circle");
-    const path = booksvg.querySelector("path");
-
-    bookmarkButton.addEventListener('click', () => {
-        bookmarkButton.textContent = 'Bookmarked';
-        bookmarkButton.style.width = '190px';
-        bookmarkButton.style.color = '#147A73';
-        circle.style.fill = "#147A73";
-        path.style.fill = "#FFFFFF";
-        bookmarkButton.innerHTML = '<svg id="btn" width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#147A73" cx="28" cy="28" r="28"/><path fill="#FFFFFF" d="M23 19v18l5-5.058L33 37V19z"/></g></svg>Bookmarked';
-    }); */
     const bookmarkButton = document.getElementById('book');
-const booksvg = document.getElementById('btn');
-const circle = booksvg.querySelector("circle");
-const path = booksvg.querySelector("path");
 
 // Check if the bookmarked state is stored in localStorage
 let isBookmarked = localStorage.getItem("isBookmarked") === "true";
@@ -120,3 +106,4 @@ bookmarkButton.addEventListener('click', (e) => {
   isBookmarked = !isBookmarked;
 });
 
+});
