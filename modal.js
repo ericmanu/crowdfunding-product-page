@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     },
   ];
 
+  // OPEN MOBAL
   const section = document.querySelector(".project");
   const pledgecontainer = document.createElement("section");
   pledgecontainer.classList.add("pledgecontainer");
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const section1 = document.querySelector(".lightbox");
   const openThisProject = document.getElementById("back");
   const closeThisProject = document.querySelector(".close-modal");
-
+  
   openThisProject.addEventListener("click", () => {
     section1.style.display = "block";
   });
@@ -99,6 +100,21 @@ document.addEventListener("DOMContentLoaded", (e) => {
   closeThisProject.addEventListener("click", () => {
     section1.style.display = "none";
   });
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener("click", (event) => {
+    if (event.target == section1) {
+      section1.style.display = "none";
+      console.log("Hello!");
+    }
+  });
+  const moneyElement = document.querySelector(".money h1");
+  let moneyValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+  moneyElement.textContent = `$${moneyValue.toLocaleString()}`;
+
+  const backersCountElement = document.querySelector(".backers h1");
+  let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
+  backersCountElement.textContent = backersCount.toLocaleString();
 
   // RADIO EVENTS
   const btns = document.querySelectorAll(".edition");
@@ -108,6 +124,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const pl = radioButton.parentElement;
     const project = pl.parentElement.parentElement;
     // console.log(project);
+    
     btn.addEventListener("click", () => {
       radioButton.checked = true;
       pl.style.height = "254px";
@@ -150,40 +167,63 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }) */
 
         button.addEventListener("click", function () {
-          
           const inputValue = parseInt(input.value);
           if (inputValue >= 25) {
             updateMoneyValue(inputValue);
             updateProgressBar(inputValue);
-            thankYouPage(); // Call the function to display the thank you page
+            incrementBackersCount();
+            const thanksSection = thankYouPage(); // Call the function to get the thanks section
+            project.replaceWith(thanksSection); // Replace the project element with the thanks section
           } else {
             alert("Please enter a value of 25 or more.");
           }
-          project.style.display = "none";
+
         });
 
         function updateMoneyValue(value) {
           const moneyElement = document.querySelector(".money h1");
-          const currentValue = parseInt(moneyElement.textContent.replace(/[^0-9]/g, ""));
+          let currentValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+          // const currentValue = parseInt(moneyElement.textContent.replace(/[^0-9]/g, ""));
           const updatedValue = currentValue + value;
           moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
+          localStorage.setItem("moneyValue", updatedValue);
         }
 
         function updateProgressBar(value) {
           const progressBar = document.getElementById("progress-bar");
-          const currentValue = parseInt(progressBar.value);
+          let currentValue = parseInt(localStorage.getItem("progressValue")) || 0;
+          // const currentValue = parseInt(progressBar.value);
           const maxValue = parseInt(progressBar.max);
           const updatedValue = currentValue + value;
           progressBar.value = Math.min(updatedValue, maxValue);
+          localStorage.setItem("progressValue", updatedValue);
         }
 
-        console.log(div);
+        function incrementBackersCount() {
+          const backersCountElement = document.querySelector(".backers h1");
+          let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
+          backersCount++;
+          backersCountElement.textContent = backersCount.toLocaleString();
+          localStorage.setItem("backersCount", backersCount);
+        }
+
+        function decrementDaysLeft() {
+          const daysLeftElement = document.querySelector(".days h1");
+          let daysLeft = 56; 
+          daysLeft--;
+          daysLeftElement.textContent = daysLeft.toLocaleString();
+        }
+
+        function updateDaysCount() {
+         return setInterval(decrementDaysLeft, 86400000); // Update the days count every 24 hours (86400000 milliseconds)
+        }
+        console.log(updateDaysCount());
       }
 
       // Collapse other radio inputs
       btns.forEach((otherBtn) => {
         const otherRadioButton =
-          otherBtn.parentElement.querySelector("#pledge");
+        otherBtn.parentElement.querySelector("#pledge");
         const otherPl = otherRadioButton.parentElement;
         if (otherRadioButton !== radioButton) {
           otherRadioButton.checked = false;
@@ -195,39 +235,47 @@ document.addEventListener("DOMContentLoaded", (e) => {
     });
   });
 
+  // Modal Complete Page
   const thankYouPage = () => {
     const thanks = document.createElement("section");
-thanks.classList.add("thanks");
-thanks.style.width = "540px";
-thanks.style.height = "449px";
-thanks.style.border = "1px solid rgba(0, 0, 0, 0.0497193)";
-thanks.style.borderRadius = "8px";
-thanks.style.background = "#FFFFFF";
+    thanks.classList.add("thanks");
+    thanks.style.width = "540px";
+    thanks.style.height = "449px";
+    thanks.style.border = "1px solid rgba(0, 0, 0, 0.0497193)";
+    thanks.style.borderRadius = "8px";
+    thanks.style.background = "#FFFFFF";
 
-const thanksImage = document.createElement("img");
-thanksImage.src = "/images/icon-check.svg";
-thanks.appendChild(thanksImage);
+    const thanksImage = document.createElement("img");
+    thanksImage.src = "/images/icon-check.svg";
+    thanks.appendChild(thanksImage);
 
-const thanksDiv = document.createElement("div");
-thanksDiv.classList.add("support");
-thanks.appendChild(thanksDiv);
+    const thanksDiv = document.createElement("div");
+    thanksDiv.classList.add("support");
+    thanks.appendChild(thanksDiv);
 
-const h1 = document.createElement("h1");
-h1.textContent = "Thanks for your support!";
-thanksDiv.appendChild(h1);
+    const h1 = document.createElement("h1");
+    h1.textContent = "Thanks for your support!";
+    thanksDiv.appendChild(h1);
 
-const paragraph = document.createElement("p");
-paragraph.textContent = "Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our campaign is completed."
-thanksDiv.appendChild(paragraph);
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our campaign is completed."
+    thanksDiv.appendChild(paragraph);
 
-const button = document.createElement("button");
-button.classList.add("got-it");
-button.textContent = "Got it!";
-thanksDiv.appendChild(button);
+    const button = document.createElement("button");
+    button.classList.add("got-it");
+    button.textContent = "Got it!";
+    thanksDiv.appendChild(button);
 
-    // console.log(thanks);
+    button.addEventListener("click", () => {
+      thanks.style.display = "none";
+      section1.style.display = "none";
+      setTimeout(() => {
+        window.location.reload();
+      }, 10000);
+    })
+    return thanks;
+    // console.log("thanks");
   }
-  thankYouPage();
 
 });
 /*

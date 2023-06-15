@@ -315,10 +315,11 @@ body {
   display: none;
   position: absolute;
   top: 0;
-  height: 228vh;
+  height: 291.9vh;
   width: 100%;
   background: #0a0a0a;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .close-modal {
@@ -487,7 +488,7 @@ input[type="radio"]:checked::before {
 }
 
 #pa {
-  padding-left: 0.7rem;
+  padding-left: 1.5rem;
   height: 48px;
   width: 100px;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -501,6 +502,10 @@ input[type="radio"]:checked::before {
 
 .thanks img {
     margin: 48px 225px 0;
+}
+
+.thanks {
+  margin: 460px auto;
 }
 
 .support {
