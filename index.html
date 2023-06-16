@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Crowdfunding product page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="head">
+    <nav class="nav">
+      <div class="logo">
+        <img src="/images/logo.svg" alt="">
+      </div>
+      <div class="links">
+        <a href="./">About</a>
+        <a href="./">Discover</a>
+        <a href="./">Get Started</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="master">
+      <div class="m-image">
+      </div>
+      <div class="m-words">
+        <h1>Mastercraft Bamboo Monitor Riser</h1>
+        <p>A beautiful & handcrafted monitor stand to reduce neck and eye strain.</p> 
+      </div>
+      <div class="pro">
+        <button id="back">Back this project</button>
+        <button id="book"><svg id="btn" width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#2F2F2F" cx="28" cy="28" r="28"/><path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z"/></g></svg>Bookmark</button> 
+      </div>
+    </section>
+    <section class="progress">
+      <div class="p-s">
+        <div class="money">
+          <h1>$0</h1>
+          <p>of $100,000 backed</p>
+        </div>
+        <hr>
+        <div class="backers">
+          <h1>0</h1>
+          <p>total backers</p>
+        </div>
+        <hr>
+        <div class="days">
+          <h1>56</h1>
+          <p>days left</p>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <progress id="progress-bar" value="0" max="100000"></progress>
+      </div>
+      
+    </section>
+    <section class="about">
+      <h1>About this project</h1> 
+      <h6>The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform that elevates your screen 
+      to a more comfortable viewing height. Placing your monitor at eye level has the potential to improve 
+      your posture and make you more comfortable while at work, helping you stay focused on the task at hand.
+      <br><br>
+      Featuring artisan craftsmanship, the simplicity of design creates extra desk space below your computer 
+      to allow notepads, pens, and USB sticks to be stored under the stand.</h6>
+      
+    </section>
+    <section class="lightbox">
+      <section class="project">
+        <svg class="close-modal" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M11.314 0l2.828 2.828L9.9 7.071l4.243 4.243-2.828 2.828L7.07 9.9l-4.243 4.243L0 11.314 4.242 7.07 0 2.828 2.828 0l4.243 4.242L11.314 0z" fill-rule="evenodd" /></svg>
+        <h1>Back this project</h1>
+        <p>Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?</p>
+    
+      </section>
+    </section>
+  </main>
+  
+  <script src="modal.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>

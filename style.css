@@ -1,0 +1,548 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Commissioner", sans-serif;
+  width: 100%;
+  height: auto;
+  background: #f2f2f2;
+}
+
+.head {
+  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.0001) 100%);
+  height: 128px;
+  width: 100%;
+  padding-top: 3rem;
+}
+
+.head::before {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(/images/image-hero-desktop.jpg);
+  width: 100%;
+  height: 28rem;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.nav {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links {
+  width: 225px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.links a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.master {
+  width: 730px;
+  height: 269px;
+  margin: 14rem auto 24px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.m-image {
+  background-image: url(/images/logo-mastercraft.svg);
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  position: relative;
+  bottom: 2rem;
+}
+
+.m-words {
+  width: 509px;
+  height: 69px;
+  margin: 5px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.m-words h1 {
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.m-words p {
+  font-weight: 400;
+  font-size: 16px;
+  color: #7a7a7a;
+  padding-top: 0.8rem;
+}
+
+.pro {
+  width: 634px;
+  height: 56px;
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#back {
+  width: 204px;
+  height: 56px;
+  background: #3cb3ab;
+  border-radius: 33.5px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border: 0;
+}
+
+#back:hover {
+  cursor: pointer;
+  background: #147a73;
+}
+
+#book {
+  width: 174px;
+  height: 56px;
+  border-radius: 33.5px;
+  color: #7a7a7a;
+  font-weight: 700;
+  font-size: 16px;
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+
+#book:hover {
+  cursor: pointer;
+}
+
+#book svg {
+  margin-right: 1rem;
+}
+
+.progress {
+  width: 730px;
+  height: 212px;
+  margin: 0 auto 24px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.p-s {
+  display: flex;
+  margin: 0 48px;
+  align-items: center;
+  padding-top: 48px;
+}
+
+.progress hr {
+  height: 63px;
+  margin: 0 42px;
+}
+
+.money {
+  width: 137px;
+}
+
+.money h1,
+.backers h1,
+.days h1 {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.money p,
+.backers p,
+.days p {
+  font-weight: 400;
+  font-size: 14.7px;
+  color: #7a7a7a;
+}
+
+.backers {
+  width: 89px;
+  margin-right: 49px;
+}
+
+.days {
+  width: 58px;
+}
+
+.progress-bar {
+  width: 634px;
+  margin: 37px auto;
+}
+
+#progress-bar {
+  width: 634px;
+  height: 12px;
+}
+
+.about {
+  width: 730px;
+  height: 1197px;
+  margin: 0 auto 124px;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 48px;
+}
+
+.about h1 {
+  height: 24px;
+  width: 180px;
+  font-weight: 700;
+  font-size: 19.7px;
+}
+
+.about h6 {
+  height: 210px;
+  width: 634px;
+  margin-top: 35px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  color: #7a7a7a;
+}
+
+.bamboo {
+  height: 248px;
+  width: 634px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  margin-top: 30px;
+  padding: 38px 32px;
+}
+
+.b-in {
+  display: flex;
+  width: 35.625rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.b-in h2 {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.b-in span {
+  font-weight: 500;
+  font-size: 15px;
+  color: #3cb3ab;
+}
+
+.bamboo p {
+  height: 60px;
+  width: 570px;
+  margin-top: 24px;
+}
+
+.b-reward {
+  width: 570px;
+  height: 48px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.b-reward h2 {
+  height: 40px;
+  width: 83px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.b-reward h2 span {
+  position: relative;
+  color: #7a7a7a;
+  font-weight: 400;
+  font-size: 15px;
+  bottom: 0.4rem;
+}
+
+#reward {
+  height: 48px;
+  width: 157px;
+  border-radius: 33.5px;
+  background: #3cb3ab;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: 0;
+}
+
+#reward:hover {
+  cursor: pointer;
+  background: #147a73;
+}
+
+/* Back this project */
+.project {
+  position: absolute;
+  top: 184px;
+  left: 394.5px;
+  height: 905px;
+  width: 730px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.0497193);
+  z-index: 1;
+}
+
+.lightbox {
+  display: none;
+  position: absolute;
+  top: 0;
+  height: 291.9vh;
+  width: 100%;
+  background: #0a0a0a;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.close-modal {
+  fill: grey;
+}
+
+.close-modal:hover {
+  cursor: pointer;
+  fill: black;
+}
+
+.project svg {
+  margin: 32px 42.75rem 0;
+}
+
+.project h1 {
+  margin: 2.43px 48px 0;
+  font-weight: 700;
+  font-size: 24px;
+  width: 200px;
+}
+
+.project p {
+  margin: 16px 48px 0;
+  color: #7a7a7a;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.pledgecontainer {
+  width: 634px;
+  height: 701px;
+  margin: 32px 48px;
+}
+
+.pledge {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  height: 157px;
+  margin-bottom: 24px;
+}
+
+input[type="radio"] {
+  /* Hide the default radio button */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Add your custom radio button styles */
+  margin: 35px 28px 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+input[type="radio"]::before {
+  /* Add the radio button indicator */
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  /* Default color when unchecked */
+  border-radius: 50%;
+  margin: 5px;
+}
+
+input[type="radio"]:checked::before {
+  /* Change the color of the radio button when checked */
+  background: #3cb3ab;
+}
+
+.edition {
+  display: flex;
+  height: 19px;
+  width: 266px;
+  margin: -1.7rem 76px 0;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.edition:hover input[type="radio"] {
+  border-color: #3cb3ab;
+}
+
+.edition:hover h6,
+.edition:hover h2 {
+  color: #3cb3ab;
+  font-weight: 700;
+}
+
+.edition h2 {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.edition h6 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #3cb3ab;
+}
+
+.edd {
+  height: 22px;
+  width: 61px;
+  margin: -1.296rem 34.063rem 0;
+}
+
+.edd h2 {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.edd h2 span {
+  font-weight: 400;
+  font-size: 15px;
+  margin-left: 0.5rem;
+}
+
+.pledgecontainer .pledge p {
+  height: 56px;
+  width: 535px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 28px;
+  margin-left: 4.6rem;
+}
+
+.pledgeAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pledgeAmount h6 {
+  font-weight: 400;
+  font-size: 15px;
+  color: #7a7a7a;
+}
+
+.pledgeAmount span {
+  position: relative;
+  left: 2rem;
+  opacity: 0.25;
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 99;
+}
+
+.amount {
+  height: 48px;
+  width: 107px;
+  background: #3cb3ab;
+  border-radius: 33.5px;
+  border: 0;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.amount:hover {
+    background: #147A73;
+}
+
+#pa {
+  padding-left: 1.5rem;
+  height: 48px;
+  width: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 33.5px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.thanks img {
+    margin: 48px 225px 0;
+}
+
+.thanks {
+  margin: 460px auto;
+}
+
+.support {
+    width: 444px;
+    height: 135px;
+    margin: 47.5px auto 0;
+    text-align: center;
+}
+
+.support h1 {
+    height: 29px;
+width: 444px;
+font-weight: 700;
+font-size: 24px;
+margin-bottom: 16px;
+}
+
+.support p {
+    font-weight: 400;
+font-size: 16px;
+line-height: 30px;
+color: #7A7A7A;
+}
+
+.got-it {
+    width: 107px;
+height: 48px;
+margin: 32px auto;
+background: #3CB3AB;
+border-radius: 33.5px;
+border: 0;
+font-weight: 700;
+font-size: 14px;
+color: #fff;
+}
+
+.got-it:hover {
+    background: #147A73;
+    cursor: pointer;
+}
