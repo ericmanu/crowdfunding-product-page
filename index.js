@@ -107,3 +107,137 @@ bookmarkButton.addEventListener('click', (e) => {
 });
 
 });
+
+// Retrieve and display initial values from localStorage
+const moneyElement = document.querySelector(".money h1");
+let moneyValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+moneyElement.textContent = `$${moneyValue.toLocaleString()}`;
+
+const backersCountElement = document.querySelector(".backers h1");
+let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
+backersCountElement.textContent = backersCount.toLocaleString();
+
+const storedProgressValue = parseInt(localStorage.getItem("progressValue")) || 0;
+const progressBar = document.getElementById("progress-bar");
+const maxValue = parseInt(progressBar.max);
+progressBar.value = Math.min(storedProgressValue, maxValue);
+
+// RADIO EVENTS
+const btns = document.querySelectorAll(".edition");
+
+btns.forEach((btn) => {
+  const radioButton = btn.parentElement.querySelector("#pledge");
+  const pl = radioButton.parentElement;
+  const project = pl.parentElement.parentElement;
+
+  btn.addEventListener("click", () => {
+    if (radioButton.checked) {
+      // Expand selected pledge option
+      pl.style.height = "254px";
+      pl.style.border = "2px solid #3CB3AB";
+
+      // Check if <hr> already exists
+      const existingHr = pl.querySelector("hr");
+      if (!existingHr) {
+        const hr = document.createElement("hr");
+        hr.style.border = "1px solid rgba(0, 0, 0, 0.15)";
+        hr.style.marginTop = "30px";
+        pl.appendChild(hr);
+      }
+
+      const pledgeAmountDiv = pl.querySelector(".pledgeAmount");
+      if (!pledgeAmountDiv) {
+        // Create pledge amount input section
+        const div = document.createElement("div");
+        div.classList.add("pledgeAmount");
+        pl.appendChild(div);
+        div.style.height = "48px";
+        div.style.width = "578px";
+        div.style.margin = "24px auto";
+
+        const h6 = document.createElement("h6");
+        div.appendChild(h6);
+        h6.textContent = "Enter your pledge";
+
+        const div1 = document.createElement("div");
+        div.appendChild(div1);
+
+        const span = document.createElement("span");
+        div1.appendChild(span);
+        span.textContent = "$";
+
+        const input = document.createElement("input");
+        div1.appendChild(input);
+        input.setAttribute("type", "number");
+        input.setAttribute("id", "pa");
+        input.setAttribute("name", "inputno");
+
+        const button = document.createElement("button");
+        button.classList.add("amount");
+        div1.appendChild(button);
+        button.textContent = "Continue";
+
+        button.addEventListener("click", function () {
+          const inputValue = parseInt(input.value);
+          if (inputValue >= 25) {
+            updateMoneyValue(inputValue);
+            updateProgressBar(inputValue);
+            incrementBackersCount();
+            const thanksSection = thankYouPage();
+            project.replaceWith(thanksSection);
+          } else {
+            alert("Please enter a value of 25 or more.");
+          }
+        });
+
+        function updateMoneyValue(value) {
+          let currentValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+          const updatedValue = currentValue + value;
+          moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
+          localStorage.setItem("moneyValue", updatedValue);
+        }
+
+        function updateProgressBar(value) {
+          let currentValue = parseInt(localStorage.getItem("progressValue")) || 0;
+          const updatedValue = currentValue + value;
+          progressBar.value = Math.min(updatedValue, maxValue);
+          localStorage.setItem("progressValue", updatedValue);
+        }
+
+        function incrementBackersCount() {
+          let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
+          backersCount++;
+          backersCountElement.textContent = backersCount.toLocaleString();
+          localStorage.setItem("backersCount", backersCount);
+        }
+      }
+    } else {
+      // Collapse deselected pledge option
+      pl.style.height = "157px";
+      pl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
+
+      const pledgeAmountDiv = pl.querySelector(".pledgeAmount");
+      if (pledgeAmountDiv) {
+        pledgeAmountDiv.remove();
+      }
+    }
+
+    // Collapse other radio inputs
+    btns.forEach((otherBtn) => {
+      const otherRadioButton = otherBtn.parentElement.querySelector("#pledge");
+      const otherPl = otherRadioButton.parentElement;
+      if (otherRadioButton !== radioButton) {
+        otherRadioButton.checked = false;
+        otherPl.style.height = "157px";
+        otherPl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
+
+        const pledgeAmountDiv = otherPl.querySelector(".pledgeAmount");
+        if (pledgeAmountDiv) {
+          pledgeAmountDiv.remove();
+        }
+      }
+    });
+
+    project.style.height = "1001px";
+  });
+});

@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const section1 = document.querySelector(".lightbox");
   const openThisProject = document.getElementById("back");
   const closeThisProject = document.querySelector(".close-modal");
-  
+
   openThisProject.addEventListener("click", () => {
     section1.style.display = "block";
   });
@@ -108,6 +108,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
       console.log("Hello!");
     }
   });
+
+  // Retrieve and display initial values from localStorage
   const moneyElement = document.querySelector(".money h1");
   let moneyValue = parseInt(localStorage.getItem("moneyValue")) || 0;
   moneyElement.textContent = `$${moneyValue.toLocaleString()}`;
@@ -116,6 +118,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
   let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
   backersCountElement.textContent = backersCount.toLocaleString();
 
+  const storedProgressValue = parseInt(localStorage.getItem("progressValue")) || 0;
+  const progressBar = document.getElementById("progress-bar");
+  const maxValue = parseInt(progressBar.max);
+  progressBar.value = Math.min(storedProgressValue, maxValue);
+
   // RADIO EVENTS
   const btns = document.querySelectorAll(".edition");
 
@@ -123,112 +130,125 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const radioButton = btn.parentElement.querySelector("#pledge");
     const pl = radioButton.parentElement;
     const project = pl.parentElement.parentElement;
-    // console.log(project);
-    
+
     btn.addEventListener("click", () => {
-      radioButton.checked = true;
-      pl.style.height = "254px";
-      pl.style.border = "2px solid #3CB3AB";
-      // Check if <hr> already exists
-      const existingHr = pl.querySelector("hr");
-      if (!existingHr) {
-        const hr = document.createElement("hr");
-        hr.style.border = "1px solid rgba(0, 0, 0, 0.15)";
-        hr.style.marginTop = "30px";
-        pl.appendChild(hr);
+      if (radioButton.checked = true) {
+        // Expand selected pledge option
+        pl.style.height = "254px";
+        pl.style.border = "2px solid #3CB3AB";
 
-        const div = document.createElement("div");
-        div.classList.add("pledgeAmount");
-        pl.appendChild(div);
-        div.style.height = "48px";
-        div.style.width = "578px";
-        div.style.margin = "24px auto";
-        const h6 = document.createElement("h6");
-        div.appendChild(h6);
-        h6.textContent = "Enter your pledge";
-        const div1 = document.createElement("div");
-        div.appendChild(div1);
-        const span = document.createElement("span");
-        div1.appendChild(span);
-        span.textContent = "$";
-        const input = document.createElement("input");
-        div1.appendChild(input);
-        input.setAttribute("type", "number");
-        input.setAttribute("id", "pa");
-        input.setAttribute("name", "inputno");
-        const button = document.createElement("button");
-        button.classList.add("amount");
-        div1.appendChild(button);
-        button.textContent = "Continue";
+        // Check if <hr> already exists
+        const existingHr = pl.querySelector("hr");
+        if (!existingHr) {
+          const hr = document.createElement("hr");
+          hr.style.border = "1px solid rgba(0, 0, 0, 0.15)";
+          hr.style.marginTop = "30px";
+          pl.appendChild(hr);
+        }
+        const pledgeAmountDiv = pl.querySelector(".pledgeAmount");
+        if (!pledgeAmountDiv) {
+          // Create pledge amount input section
+          const div = document.createElement("div");
+          div.classList.add("pledgeAmount");
+          pl.appendChild(div);
+          div.style.height = "48px";
+          div.style.width = "578px";
+          div.style.margin = "24px auto";
+          const h6 = document.createElement("h6");
+          div.appendChild(h6);
+          h6.textContent = "Enter your pledge";
+          const div1 = document.createElement("div");
+          div.appendChild(div1);
+          const span = document.createElement("span");
+          div1.appendChild(span);
+          span.textContent = "$";
+          const input = document.createElement("input");
+          div1.appendChild(input);
+          input.setAttribute("type", "number");
+          input.setAttribute("id", "pa");
+          input.setAttribute("name", "inputno");
+          const button = document.createElement("button");
+          button.classList.add("amount");
+          div1.appendChild(button);
+          button.textContent = "Continue";
 
-        /* input.addEventListener("click", () => {
-          input.style.border = "1px solid #3CB3AB"
-          console.log(input)
-        }) */
+          button.addEventListener("click", function () {
+            const inputValue = parseInt(input.value);
+            if (inputValue >= 25) {
+              updateMoneyValue(inputValue);
+              updateProgressBar(inputValue);
+              incrementBackersCount();
+              const thanksSection = thankYouPage(); // Call the function to get the thanks section
+              project.replaceWith(thanksSection); // Replace the project element with the thanks section
+            } else {
+              alert("Please enter a value of 25 or more.");
+            }
 
-        button.addEventListener("click", function () {
-          const inputValue = parseInt(input.value);
-          if (inputValue >= 25) {
-            updateMoneyValue(inputValue);
-            updateProgressBar(inputValue);
-            incrementBackersCount();
-            const thanksSection = thankYouPage(); // Call the function to get the thanks section
-            project.replaceWith(thanksSection); // Replace the project element with the thanks section
-          } else {
-            alert("Please enter a value of 25 or more.");
+          });
+
+          function updateMoneyValue(value) {
+            const moneyElement = document.querySelector(".money h1");
+            let currentValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+            // const currentValue = parseInt(moneyElement.textContent.replace(/[^0-9]/g, ""));
+            const updatedValue = currentValue + value;
+            moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
+            localStorage.setItem("moneyValue", updatedValue);
           }
 
-        });
+          function updateProgressBar(value) {
+            const progressBar = document.getElementById("progress-bar");
+            let currentValue = parseInt(localStorage.getItem("progressValue")) || 0;
+            // const currentValue = parseInt(progressBar.value);
+            const maxValue = parseInt(progressBar.max);
+            const updatedValue = currentValue + value;
+            progressBar.value = Math.min(updatedValue, maxValue);
+            localStorage.setItem("progressValue", updatedValue);
+          }
 
-        function updateMoneyValue(value) {
-          const moneyElement = document.querySelector(".money h1");
-          let currentValue = parseInt(localStorage.getItem("moneyValue")) || 0;
-          // const currentValue = parseInt(moneyElement.textContent.replace(/[^0-9]/g, ""));
-          const updatedValue = currentValue + value;
-          moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
-          localStorage.setItem("moneyValue", updatedValue);
-        }
+          function incrementBackersCount() {
+            const backersCountElement = document.querySelector(".backers h1");
+            let backersCount = parseInt(localStorage.getItem("backersCount")) || 5007;
+            backersCount++;
+            backersCountElement.textContent = backersCount.toLocaleString();
+            localStorage.setItem("backersCount", backersCount);
+          }
 
-        function updateProgressBar(value) {
-          const progressBar = document.getElementById("progress-bar");
-          let currentValue = parseInt(localStorage.getItem("progressValue")) || 0;
-          // const currentValue = parseInt(progressBar.value);
-          const maxValue = parseInt(progressBar.max);
-          const updatedValue = currentValue + value;
-          progressBar.value = Math.min(updatedValue, maxValue);
-          localStorage.setItem("progressValue", updatedValue);
-        }
+          function decrementDaysLeft() {
+            const daysLeftElement = document.querySelector(".days h1");
+            let daysLeft = 56;
+            daysLeft--;
+            daysLeftElement.textContent = daysLeft.toLocaleString();
+          }
 
-        function incrementBackersCount() {
-          const backersCountElement = document.querySelector(".backers h1");
-          let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
-          backersCount++;
-          backersCountElement.textContent = backersCount.toLocaleString();
-          localStorage.setItem("backersCount", backersCount);
+          function updateDaysCount() {
+            return setInterval(decrementDaysLeft, 86400000); // Update the days count every 24 hours (86400000 milliseconds)
+          }
+          console.log(updateDaysCount());
         }
+      } else {
+        pl.style.height = "157px";
+        pl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
 
-        function decrementDaysLeft() {
-          const daysLeftElement = document.querySelector(".days h1");
-          let daysLeft = 56; 
-          daysLeft--;
-          daysLeftElement.textContent = daysLeft.toLocaleString();
+        const pledgeAmountDiv = pl.querySelector(".pledgeAmount");
+        if (pledgeAmountDiv) {
+          pledgeAmountDiv.remove();
         }
-
-        function updateDaysCount() {
-         return setInterval(decrementDaysLeft, 86400000); // Update the days count every 24 hours (86400000 milliseconds)
-        }
-        console.log(updateDaysCount());
       }
 
       // Collapse other radio inputs
       btns.forEach((otherBtn) => {
         const otherRadioButton =
-        otherBtn.parentElement.querySelector("#pledge");
+          otherBtn.parentElement.querySelector("#pledge");
         const otherPl = otherRadioButton.parentElement;
         if (otherRadioButton !== radioButton) {
           otherRadioButton.checked = false;
           otherPl.style.height = "157px";
           otherPl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
+
+          const pledgeAmountDiv = otherPl.querySelector(".pledgeAmount");
+          if (pledgeAmountDiv) {
+            pledgeAmountDiv.remove();
+          }
         }
       });
       project.style.height = "1001px";
@@ -271,17 +291,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
       section1.style.display = "none";
       setTimeout(() => {
         window.location.reload();
-      }, 10000);
+      }, 1000);
     })
     return thanks;
-    // console.log("thanks");
   }
 
 });
-/*
-    // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  } */
-// console.log(backThisProject);
