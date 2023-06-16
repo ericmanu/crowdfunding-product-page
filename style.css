@@ -57,6 +57,10 @@ body {
   text-decoration: underline;
 }
 
+.ham {
+  display: none;
+}
+
 .master {
   width: 730px;
   height: 269px;
@@ -545,4 +549,121 @@ color: #fff;
 .got-it:hover {
     background: #147A73;
     cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .head {
+    padding-top: 32px;
+  }
+  .head::before {
+    background-image: url(/images/image-hero-mobile.jpg);
+    width: 100%;
+    height: 300px;
+  }
+  .nav {
+    border: 1px solid red;
+    width: 90%;
+  }
+  .links {
+    display: none;
+  }
+  .ham {
+    display: block;
+  }
+  .close-ham {
+    display: none;
+  }
+  .link-menu-tab {
+    display: none;
+    position: absolute;
+    width: 327px;
+    height: 212px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+    border-radius: 8px;
+    top: 88px;
+    left: 24px;
+  }
+  .ham-links {
+    display: flex;
+    flex-direction: column;
+  }
+  .ham-links a{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000;
+    margin: 1.5rem;
+  }
+  .ham-links hr {
+    background: #2F2F2F;
+    opacity: 0.1;
+  }  
+  .master {
+    width: 327px;
+    height: 284px;
+    margin: 7.3rem auto 24px;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+  }
+  .m-image {
+    bottom: 1.5rem;
+  }
+  .m-words {
+    width: 279px;
+    text-align: center;
+  }
+  .m-words h1 {
+    width: 250px;
+    font-size: 20px;
+  }
+  .m-words p {
+    font-size: 14px;
+    margin-top: .5rem;
+  }
+  .pro {
+    width: 279px;
+    margin: 60px auto;
+  }
+  #book {
+    position: absolute;
+    background: none;
+    font-size: 0;
+    border: none;
+    border-radius: 0;
+    left: 17rem;
+  }
+  #book svg {
+    position: sticky;
+    right: 7.5rem;
+  }
+  .progress {
+    width: 327px;
+    height: 412px;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+  }
+  .p-s {
+    flex-direction: column;
+    padding-top: 30px;
+    height: 22rem;
+  }
+  .progress hr {
+    height: 1px;
+    width: 80px;
+    margin: 25px;
+  }
+  .progress-bar {
+    width: 279px;
+    margin: 5px auto;
+  }
+  #progress-bar {
+    width: 279px;
+  }
+  .backers {
+    margin-left: 3rem;
+  }
+  .money h1,
+  .backers h1,
+  .days h1 {
+    margin-bottom: .5rem;
+  }
 }

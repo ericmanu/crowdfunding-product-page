@@ -106,4 +106,21 @@ bookmarkButton.addEventListener('click', (e) => {
   isBookmarked = !isBookmarked;
 });
 
+const openHam = document.querySelector('.open-ham');
+const closeHam = document.querySelector('.close-ham');
+const hamContainer = document.querySelector('.link-menu-tab');
+// console.log(hamContainer)
+
+openHam.addEventListener('click', () => {
+  openHam.style.display = 'none';
+  closeHam.style.display = 'block';
+  hamContainer.style.display = 'block';
+});
+
+closeHam.addEventListener('click', () => {
+  openHam.style.display = 'block';
+  closeHam.style.display = 'none';
+  hamContainer.style.display = 'none';
+});
+
 });

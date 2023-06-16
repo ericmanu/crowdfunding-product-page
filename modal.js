@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     },
   ];
 
-  // OPEN MOBAL
+  // OPEN MODAL
   const section = document.querySelector(".project");
   const pledgecontainer = document.createElement("section");
   pledgecontainer.classList.add("pledgecontainer");
@@ -109,7 +109,25 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }
   });
 
+  function decrementDaysLeft() {
+    const daysLeftElement = document.querySelector(".days h1");
+    let daysLeft = parseInt(localStorage.getItem("daysLeft")) || 56;
+    daysLeft--;
+    daysLeftElement.textContent = daysLeft;
+    localStorage.setItem("daysLeft", daysLeft);
+  }
+
+  function updateDaysCount() {
+    return setInterval(decrementDaysLeft, 86400000);
+  }
+  updateDaysCount();
+
   // Retrieve and display initial values from localStorage
+  const daysLeftElement = document.querySelector(".days h1");
+  let daysLeft = parseInt(localStorage.getItem("daysLeft")) || 56;
+  daysLeft--;
+  daysLeftElement.textContent = daysLeft;
+
   const moneyElement = document.querySelector(".money h1");
   let moneyValue = parseInt(localStorage.getItem("moneyValue")) || 0;
   moneyElement.textContent = `$${moneyValue.toLocaleString()}`;
@@ -178,7 +196,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
               updateMoneyValue(inputValue);
               updateProgressBar(inputValue);
               incrementBackersCount();
-              const thanksSection = thankYouPage(); // Call the function to get the thanks section
+              const thanksSection = thankYouPage(); 
               project.replaceWith(thanksSection); // Replace the project element with the thanks section
             } else {
               alert("Please enter a value of 25 or more.");
@@ -189,8 +207,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
           function updateMoneyValue(value) {
             const moneyElement = document.querySelector(".money h1");
             let currentValue = parseInt(localStorage.getItem("moneyValue")) || 0;
-            // const currentValue = parseInt(moneyElement.textContent.replace(/[^0-9]/g, ""));
-            const updatedValue = currentValue + value;
+            const maxValue = 100000; // Maximum value set to 100,000
+            const updatedValue = Math.min(currentValue + value, maxValue); 
             moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
             localStorage.setItem("moneyValue", updatedValue);
           }
@@ -198,7 +216,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
           function updateProgressBar(value) {
             const progressBar = document.getElementById("progress-bar");
             let currentValue = parseInt(localStorage.getItem("progressValue")) || 0;
-            // const currentValue = parseInt(progressBar.value);
             const maxValue = parseInt(progressBar.max);
             const updatedValue = currentValue + value;
             progressBar.value = Math.min(updatedValue, maxValue);
@@ -212,18 +229,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
             backersCountElement.textContent = backersCount.toLocaleString();
             localStorage.setItem("backersCount", backersCount);
           }
-
-          function decrementDaysLeft() {
-            const daysLeftElement = document.querySelector(".days h1");
-            let daysLeft = 56;
-            daysLeft--;
-            daysLeftElement.textContent = daysLeft.toLocaleString();
-          }
-
-          function updateDaysCount() {
-            return setInterval(decrementDaysLeft, 86400000); // Update the days count every 24 hours (86400000 milliseconds)
-          }
-          console.log(updateDaysCount());
         }
       } else {
         pl.style.height = "157px";
@@ -237,8 +242,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
       // Collapse other radio inputs
       btns.forEach((otherBtn) => {
-        const otherRadioButton =
-          otherBtn.parentElement.querySelector("#pledge");
+        const otherRadioButton = otherBtn.parentElement.querySelector("#pledge");
         const otherPl = otherRadioButton.parentElement;
         if (otherRadioButton !== radioButton) {
           otherRadioButton.checked = false;
@@ -291,7 +295,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       section1.style.display = "none";
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 0);
     })
     return thanks;
   }
