@@ -68,14 +68,11 @@ const productRewards = [
             firstSpan.style.opacity = '0.5';
           }
         about.appendChild(section);
-        // console.log(section);
     });
-
     const bookmarkButton = document.getElementById('book');
 
 // Check if the bookmarked state is stored in localStorage
 let isBookmarked = localStorage.getItem("isBookmarked") === "true";
-
 // Apply initial state based on localStorage
 if (isBookmarked) {
   bookmarkButton.textContent = 'Bookmarked';
@@ -101,9 +98,28 @@ bookmarkButton.addEventListener('click', (e) => {
     // Remove bookmarked state from localStorage
     localStorage.setItem("isBookmarked", false);
   }
-
   // Update isBookmarked variable
   isBookmarked = !isBookmarked;
 });
 
+const openHam = document.querySelector('.open-ham');
+const closeHam = document.querySelector('.close-ham');
+const hamContainer = document.querySelector('.link-menu-tab');
+const logo = document.querySelector('.logo');
+
+openHam.addEventListener('click', () => {
+  openHam.style.display = 'none';
+  closeHam.style.display = 'block';
+  hamContainer.style.display = 'block';
+  closeHam.style.position = 'relative';
+  closeHam.style.zIndex = '5';
+  logo.style.position = 'relative';
+  logo.style.zIndex = '5';
+});
+
+closeHam.addEventListener('click', () => {
+  openHam.style.display = 'block';
+  closeHam.style.display = 'none';
+  hamContainer.style.display = 'none';
+});
 });
