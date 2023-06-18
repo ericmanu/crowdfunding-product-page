@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
       days: "0",
     },
   ];
-
   // OPEN MODAL
   const section = document.querySelector(".project");
   const pledgecontainer = document.createElement("section");
@@ -72,22 +71,18 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const paragraph = document.createElement("p");
     paragraph.textContent = pledge.rewardType;
     div1.appendChild(paragraph);
-
     if (pledge.reward === "Pledge with no reward") {
       div3.style.display = "none";
     }
-
     if (pledge.reward === "Black Edition Stand") {
       div2.style.width = "300px";
     }
-
     if (pledge.reward === "Mahogany Special Edition") {
       div2.style.width = "358px";
       div1.style.opacity = "0.5";
     }
     section.appendChild(pledgecontainer);
   });
-
   // CLOSE MODAL EVENTS
   const section1 = document.querySelector(".lightbox");
   const openThisProject = document.getElementById("back");
@@ -96,54 +91,46 @@ document.addEventListener("DOMContentLoaded", (e) => {
   openThisProject.addEventListener("click", () => {
     section1.style.display = "block";
   });
-
   closeThisProject.addEventListener("click", () => {
     section1.style.display = "none";
   });
-
   // When the user clicks anywhere outside of the modal, close it
   window.addEventListener("click", (event) => {
     if (event.target == section1) {
       section1.style.display = "none";
-      console.log("Hello!");
     }
   });
-
   function decrementDaysLeft() {
     const daysLeftElement = document.querySelector(".days h1");
-    let daysLeft = parseInt(localStorage.getItem("daysLeft")) || 56;
+    let daysLeft = parseInt(localStorage.getItem("daysLeft")) || 57;
     daysLeft--;
     daysLeftElement.textContent = daysLeft;
     localStorage.setItem("daysLeft", daysLeft);
   }
-
   function updateDaysCount() {
     return setInterval(decrementDaysLeft, 86400000);
   }
   updateDaysCount();
-
   // Retrieve and display initial values from localStorage
   const daysLeftElement = document.querySelector(".days h1");
-  let daysLeft = parseInt(localStorage.getItem("daysLeft")) || 56;
+  let daysLeft = parseInt(localStorage.getItem("daysLeft")) || 57;
   daysLeft--;
   daysLeftElement.textContent = daysLeft;
 
   const moneyElement = document.querySelector(".money h1");
-  let moneyValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+  let moneyValue = parseInt(localStorage.getItem("moneyValue")) || 89914;
   moneyElement.textContent = `$${moneyValue.toLocaleString()}`;
 
   const backersCountElement = document.querySelector(".backers h1");
-  let backersCount = parseInt(localStorage.getItem("backersCount")) || 0;
+  let backersCount = parseInt(localStorage.getItem("backersCount")) || 5007;
   backersCountElement.textContent = backersCount.toLocaleString();
 
-  const storedProgressValue = parseInt(localStorage.getItem("progressValue")) || 0;
+  const storedProgressValue = parseInt(localStorage.getItem("progressValue")) || 89914;
   const progressBar = document.getElementById("progress-bar");
   const maxValue = parseInt(progressBar.max);
   progressBar.value = Math.min(storedProgressValue, maxValue);
-
   // RADIO EVENTS
   const btns = document.querySelectorAll(".edition");
-
   btns.forEach((btn) => {
     const radioButton = btn.parentElement.querySelector("#pledge");
     const pl = radioButton.parentElement;
@@ -154,7 +141,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         // Expand selected pledge option
         pl.style.height = "254px";
         pl.style.border = "2px solid #3CB3AB";
-
         // Check if <hr> already exists
         const existingHr = pl.querySelector("hr");
         if (!existingHr) {
@@ -196,26 +182,24 @@ document.addEventListener("DOMContentLoaded", (e) => {
               updateMoneyValue(inputValue);
               updateProgressBar(inputValue);
               incrementBackersCount();
-              const thanksSection = thankYouPage(); 
+              const thanksSection = thankYouPage();
               project.replaceWith(thanksSection); // Replace the project element with the thanks section
             } else {
               alert("Please enter a value of 25 or more.");
             }
-
           });
-
           function updateMoneyValue(value) {
             const moneyElement = document.querySelector(".money h1");
-            let currentValue = parseInt(localStorage.getItem("moneyValue")) || 0;
+            let currentValue = parseInt(localStorage.getItem("moneyValue")) || 89914;
             const maxValue = 100000; // Maximum value set to 100,000
-            const updatedValue = Math.min(currentValue + value, maxValue); 
+            const updatedValue = Math.min(currentValue + value, maxValue);
             moneyElement.textContent = `$${updatedValue.toLocaleString()}`;
             localStorage.setItem("moneyValue", updatedValue);
           }
 
           function updateProgressBar(value) {
             const progressBar = document.getElementById("progress-bar");
-            let currentValue = parseInt(localStorage.getItem("progressValue")) || 0;
+            let currentValue = parseInt(localStorage.getItem("progressValue")) || 89914;
             const maxValue = parseInt(progressBar.max);
             const updatedValue = currentValue + value;
             progressBar.value = Math.min(updatedValue, maxValue);
@@ -229,17 +213,20 @@ document.addEventListener("DOMContentLoaded", (e) => {
             backersCountElement.textContent = backersCount.toLocaleString();
             localStorage.setItem("backersCount", backersCount);
           }
-        }
+        };
       } else {
         pl.style.height = "157px";
         pl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
 
+        const existingHr = pl.querySelector("hr");
+        if (existingHr) {
+          existingHr.remove();
+        }
         const pledgeAmountDiv = pl.querySelector(".pledgeAmount");
         if (pledgeAmountDiv) {
           pledgeAmountDiv.remove();
         }
-      }
-
+      };
       // Collapse other radio inputs
       btns.forEach((otherBtn) => {
         const otherRadioButton = otherBtn.parentElement.querySelector("#pledge");
@@ -249,6 +236,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
           otherPl.style.height = "157px";
           otherPl.style.border = "1px solid rgba(0, 0, 0, 0.15)";
 
+          const existingHr = otherPl.querySelector("hr");
+          if (existingHr) {
+            existingHr.remove();
+          }
           const pledgeAmountDiv = otherPl.querySelector(".pledgeAmount");
           if (pledgeAmountDiv) {
             pledgeAmountDiv.remove();
@@ -258,7 +249,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
       project.style.height = "1001px";
     });
   });
-
   // Modal Complete Page
   const thankYouPage = () => {
     const thanks = document.createElement("section");
@@ -296,8 +286,65 @@ document.addEventListener("DOMContentLoaded", (e) => {
       setTimeout(() => {
         window.location.reload();
       }, 0);
-    })
+    });
     return thanks;
-  }
+  };
 
+  function applyMobileStyles() {
+    btns.forEach((btn) => {
+      const radioButton = btn.parentElement.querySelector("#pledge");
+      const pl = radioButton.parentElement;
+      const project = pl.parentElement.parentElement;
+      btn.addEventListener("click", () => {
+        if (radioButton.checked = true) {
+          // Expand selected pledge option
+          pl.style.height = "421px";
+
+          const existingHr = pl.querySelector("hr");
+          existingHr.style.marginTop = "60px";
+
+          const pledgeAmountDiv = pl.querySelector(".pledgeAmount");
+          pledgeAmountDiv.style.width = "231px"
+          pledgeAmountDiv.style.height = "92px";
+          pledgeAmountDiv.style.flexDirection = "column";
+
+          const button = document.querySelector(".amount");
+          button.addEventListener("click", function () {
+            thankYouPage();
+          });
+        } else {
+          pl.style.height = "288px";
+        }
+        btns.forEach((otherBtn) => {
+          const otherRadioButton = otherBtn.parentElement.querySelector("#pledge");
+          const otherPl = otherRadioButton.parentElement;
+          if (otherRadioButton !== radioButton) {
+            otherRadioButton.checked = false;
+            otherPl.style.height = "288px";
+          }
+        });
+        project.style.height = "1550px";
+      });
+    });
+    const thankYouPage = () => {
+      const thanks = document.querySelector(".thanks");
+      thanks.style.width = "327px";
+      thanks.style.height = "382px";
+      return thanks;
+    };
+  };
+  // Check if the viewport width matches the mobile view
+  function isMobileView() {
+    return window.matchMedia("(min-width: 320px) and (max-width: 480px)").matches;
+  };
+  // Function to handle window resize event
+  function handleResize() {
+    if (isMobileView()) {
+      applyMobileStyles();
+    }
+  };
+  // Add event listener to handle window resize
+  window.addEventListener("resize", handleResize);
+  // Initial check on page load
+  handleResize();
 });
