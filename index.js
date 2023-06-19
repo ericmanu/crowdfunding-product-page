@@ -61,6 +61,16 @@ const productRewards = [
         button.textContent = productReward.btn;
         secondDiv.appendChild(button);
 
+        const section1 = document.querySelector(".lightbox");
+        button.addEventListener('click', () => {
+          if (productReward.reward === 'Bamboo Stand') {
+            section1.style.display = "block";
+          }
+          if (productReward.reward === 'Black Edition Stand') {
+            section1.style.display = "block";
+          }
+        });
+
         if (productReward.reward === 'Mahogany Special Edition') {
             section.style.opacity = '0.5';
             button.style.backgroundColor = '#2F2F2F';
@@ -68,6 +78,7 @@ const productRewards = [
             firstSpan.style.opacity = '0.5';
           }
         about.appendChild(section);
+        // console.log(about)
     });
     const bookmarkButton = document.getElementById('book');
 
