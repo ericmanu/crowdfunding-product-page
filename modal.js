@@ -1,34 +1,34 @@
 document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
-  const pledgeRewards = [
-    {
-      reward: "Pledge with no reward",
-      pledge: "",
-      rewardType:
-        "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.",
-      days: "",
-    },
-    {
-      reward: "Bamboo Stand",
-      pledge: "Pledge $25 or more",
-      rewardType:
-        "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
-      days: "101",
-    },
-    {
-      reward: "Black Edition Stand",
-      pledge: "Pledge $75 or more",
-      rewardType:
-        "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-      days: "64",
-    },
-    {
-      reward: "Mahogany Special Edition",
-      pledge: "Pledge $200 or more",
-      rewardType:
-        "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-      days: "0",
-    },
+const pledgeRewards = [
+  {
+    reward: "Pledge with no reward",
+    pledge: "",
+    rewardType:
+      "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.",
+    days: "",
+  },
+  {
+    reward: "Bamboo Stand",
+    pledge: "Pledge $25 or more",
+    rewardType:
+      "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
+    days: "101",
+  },
+  {
+    reward: "Black Edition Stand",
+    pledge: "Pledge $75 or more",
+    rewardType:
+      "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
+    days: "64",
+  },
+  {
+    reward: "Mahogany Special Edition",
+    pledge: "Pledge $200 or more",
+    rewardType:
+      "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
+    days: "0",
+  },
   ];
   // OPEN MODAL
   const section = document.querySelector(".project");
@@ -131,8 +131,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
   progressBar.value = Math.min(storedProgressValue, maxValue);
   // RADIO EVENTS
   const btns = document.querySelectorAll(".edition");
-  btns.forEach((btn) => {
+  btns.forEach((btn, index) => {
     const radioButton = btn.parentElement.querySelector("#pledge");
+    const pledge = pledgeRewards[index];
     const pl = radioButton.parentElement;
     const project = pl.parentElement.parentElement;
 
@@ -178,14 +179,32 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
           button.addEventListener("click", function () {
             const inputValue = parseInt(input.value);
-            if (inputValue >= 25) {
+            if (pledge.reward === "Pledge with no reward") {
+              updateMoneyValue(0);
+              updateProgressBar(0);
+              incrementBackersCount();
+              const thanksSection = thankYouPage();
+              project.replaceWith(thanksSection);
+            }else if (pledge.reward === "Bamboo Stand" && inputValue >= 25) {
               updateMoneyValue(inputValue);
               updateProgressBar(inputValue);
               incrementBackersCount();
               const thanksSection = thankYouPage();
-              project.replaceWith(thanksSection); // Replace the project element with the thanks section
+              project.replaceWith(thanksSection);
+            } else if (pledge.reward === "Black Edition Stand" && inputValue >= 75) {
+              updateMoneyValue(inputValue);
+              updateProgressBar(inputValue);
+              incrementBackersCount();
+              const thanksSection = thankYouPage();
+              project.replaceWith(thanksSection);
             } else {
-              alert("Please enter a value of 25 or more.");
+              if (pledge.reward === "Bamboo Stand") {
+                alert("Please enter a value of 25 or more.");
+              } else if (pledge.reward === "Black Edition Stand") {
+                alert("Please enter a value of 75 or more.");
+              } else {
+                alert("The edition is out of stock.")
+              }
             }
           });
           function updateMoneyValue(value) {
