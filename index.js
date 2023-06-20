@@ -69,7 +69,7 @@ const productRewards = [
           if (productReward.reward === 'Black Edition Stand') {
             section1.style.display = "block";
           }
-        });
+        })
 
         if (productReward.reward === 'Mahogany Special Edition') {
             section.style.opacity = '0.5';
@@ -78,7 +78,7 @@ const productRewards = [
             firstSpan.style.opacity = '0.5';
           }
         about.appendChild(section);
-        // console.log(about)
+        console.log(about)
     });
     const bookmarkButton = document.getElementById('book');
 
