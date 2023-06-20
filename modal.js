@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", (e) => {
+  e.preventDefault();
 const pledgeRewards = [
   {
     reward: "Pledge with no reward",
@@ -28,8 +30,6 @@ const pledgeRewards = [
     days: "0",
   },
   ];
-document.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
   // OPEN MODAL
   const section = document.querySelector(".project");
   const pledgecontainer = document.createElement("section");
