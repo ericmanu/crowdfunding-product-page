@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
 const productRewards = [
         {
             reward: "Bamboo Stand",
@@ -132,5 +130,4 @@ closeHam.addEventListener('click', () => {
   openHam.style.display = 'block';
   closeHam.style.display = 'none';
   hamContainer.style.display = 'none';
-});
 });

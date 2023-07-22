@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
 const pledgeRewards = [
   {
     reward: "Pledge with no reward",
@@ -366,4 +364,3 @@ const pledgeRewards = [
   window.addEventListener("resize", handleResize);
   // Initial check on page load
   handleResize();
-});
